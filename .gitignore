@@ -1,2 +1,2 @@
 .DS_Store
-generator/tmp
+generator/**/tmp

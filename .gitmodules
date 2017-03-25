@@ -1,6 +1,6 @@
 [submodule "curl"]
-	path = vendor/curl
+	path = curl
 	url = https://github.com/curl/curl.git
 [submodule "openssl"]
-	path = vendor/openssl
+	path = openssl
 	url = https://github.com/openssl/openssl.git

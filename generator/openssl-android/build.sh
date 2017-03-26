@@ -135,7 +135,7 @@ done
 
 echo "Copying include files..."	
 cd ${BASE_DIR}
-cp -R ${OPENSSL_DIR}/include/ ${OPENSSL_BUILD_DIR}/
+cp -R ${OPENSSL_DIR}/include ${OPENSSL_BUILD_DIR}/
 
 echo "Copying files to vendor path..."
 rm -rf ${VENDOR_DIR}/openssl-android

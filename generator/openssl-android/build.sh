@@ -134,7 +134,8 @@ for CURRENT_ARCH in ${ARCHS[@]}; do
 done
 
 echo "Copying include files..."	
-cp -R ${OPENSSL_DIR}/include ${OPENSSL_BUILD_DIR}/
+cd ${BASE_DIR}
+cp -R ${OPENSSL_DIR}/include/ ${OPENSSL_BUILD_DIR}/
 
 echo "Copying files to vendor path..."
 rm -rf ${VENDOR_DIR}/openssl-android

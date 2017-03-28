@@ -1,139 +1,153 @@
-#!/bin/bash
-TARGET=android-9
+#!/bin/bash -e
 
-real_path() {
-  [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
-}
+# create temporary base path
+BASE_DIR="tmp"
+mkdir -p ${BASE_DIR}
+BASE_DIR="`cd "tmp/";pwd`"
+cd ${BASE_DIR}
 
-#Change this env variable to the number of processors you have
-if [ -f /proc/cpuinfo ]; then
-  JOBS=$(grep flags /proc/cpuinfo |wc -l)
-elif [ ! -z $(which sysctl) ]; then
-  JOBS=$(sysctl -n hw.ncpu)
-else
-  JOBS=2
+# common vars
+LIBRARY_VERSION="7.53.1"
+LIBRARY_TARBALL="curl-${LIBRARY_VERSION}.tar.gz"
+LIBRARY_DIR="curl-${LIBRARY_VERSION}"
+LIBRARY_BUILD_LOG="curl-${LIBRARY_VERSION}.log"
+VENDOR_LIB_DIR="curl-android"
+ARCHS=(armeabi armeabi-v7a arm64-v8a mips mips64 x86 x86_64)
+
+# create vendor dir
+VENDOR_DIR="../../../vendor"
+mkdir -p ${VENDOR_DIR}
+VENDOR_DIR="`cd "../../../vendor/";pwd`"
+
+# download library source
+if [ ! -e ${LIBRARY_TARBALL} ]; then
+	echo "Downloading curl-${LIBRARY_VERSION}.tar.gz..."
+	curl -# -o ${LIBRARY_TARBALL} -O https://curl.haxx.se/download/curl-${LIBRARY_VERSION}.tar.gz
 fi
 
-REL_SCRIPT_PATH="$(dirname $0)"
-SCRIPTPATH=$(real_path $REL_SCRIPT_PATH)
-CURLPATH="$SCRIPTPATH/../../vendor/curl"
-SSLPATH="$SCRIPTPATH/../../vendor/openssl"
-
-if [ -z "$NDK_ROOT" ]; then
-  echo "Please set your NDK_ROOT environment variable first"
-  exit 1
+# untar the file
+if [ ! -e ${LIBRARY_DIR} ]; then
+	tar zxf ${LIBRARY_TARBALL}
 fi
 
-if [[ "$NDK_ROOT" == .* ]]; then
-  echo "Please set your NDK_ROOT to an absolute path"
-  exit 1
-fi
+# create lib for each arch
+for CURRENT_ARCH in ${ARCHS[@]}; do
 
-#Configure OpenSSL
-cd $SSLPATH
-./Configure android no-asm no-shared no-cast no-idea no-camellia no-whirpool
-EXITCODE=$?
-if [ $EXITCODE -ne 0 ]; then
-	echo "Error running the ssl configure program"
-	cd $PWD
-	exit $EXITCODE
-fi
+    xLIB="/lib"
+    case ${CURRENT_ARCH} in
+        "armeabi")
+            export _ANDROID_TARGET_SELECT=arch-arm
+            export _ANDROID_ARCH=arch-arm
+            export _ANDROID_EABI=arm-linux-androideabi-4.9
+            configure_platform="android" ;;
+        "armeabi-v7a")
+            export _ANDROID_TARGET_SELECT=arch-arm
+            export _ANDROID_ARCH=arch-arm
+            export _ANDROID_EABI=arm-linux-androideabi-4.9
+            configure_platform="android-armeabi" ;;
+        "arm64-v8a")
+            export _ANDROID_TARGET_SELECT=arch-arm64-v8a
+            export _ANDROID_ARCH=arch-arm64
+            export _ANDROID_EABI=aarch64-linux-android-4.9
+            #no xLIB="/lib64"
+            configure_platform="linux-generic64 -DB_ENDIAN" ;;
+        "mips")
+            export _ANDROID_TARGET_SELECT=arch-mips
+            export _ANDROID_ARCH=arch-mips
+            export _ANDROID_EABI=mipsel-linux-android-4.9
+            configure_platform="android -DB_ENDIAN" ;;
+        "mips64")
+            export _ANDROID_TARGET_SELECT=arch-mips64
+            export _ANDROID_ARCH=arch-mips64
+            export _ANDROID_EABI=mips64el-linux-android-4.9
+            xLIB="/lib64"
+            configure_platform="linux-generic64 -DB_ENDIAN" ;;
+        "x86")
+            export _ANDROID_TARGET_SELECT=arch-x86
+            export _ANDROID_ARCH=arch-x86
+            export _ANDROID_EABI=x86-4.9
+            configure_platform="android-x86" ;;
+        "x86_64")
+            export _ANDROID_TARGET_SELECT=arch-x86_64
+            export _ANDROID_ARCH=arch-x86_64
+            export _ANDROID_EABI=x86_64-4.9
+            xLIB="/lib64"
+            configure_platform="linux-generic64" ;;
+        *)
+            configure_platform="linux-elf" ;;
+    esac
 
-#Build static libssl and libcrypto, required for cURL's configure
-cd $SCRIPTPATH
-$NDK_ROOT/ndk-build -j$JOBS -C $SCRIPTPATH ssl crypto
-EXITCODE=$?
-if [ $EXITCODE -ne 0 ]; then
-	echo "Error building the libssl and libcrypto"
-	cd $PWD
-	exit $EXITCODE
-fi
+	# build dir
+	cd ${BASE_DIR}
+	LIBRARY_BUILD_DIR="${BASE_DIR}/build"
+	mkdir -p ${LIBRARY_BUILD_DIR}
 
-#Configure cURL
-cd $CURLPATH
-if [ ! -x "$CURLPATH/configure" ]; then
-	echo "Curl needs external tools to be compiled"
-	echo "Make sure you have autoconf, automake and libtool installed"
+	# verify if the build of current arch exists
+	if [ -e ${LIBRARY_BUILD_DIR}/${CURRENT_ARCH} ]; then
+		echo "Build files of arch ${CURRENT_ARCH} already exists"
+		continue
+	fi
+
+	# setup the environment
+	chmod a+x ../setenv-android.sh
+	. ../setenv-android.sh
+
+	# build
+	echo "Compiling arch: ${CURRENT_ARCH}..."
+	cd ${LIBRARY_DIR}
+
+	TARGET=android-21
+
+	export SYSROOT="${ANDROID_NDK_ROOT}/platforms/${TARGET}/arch-arm"
+	export CPPFLAGS="-I${ANDROID_NDK_ROOT}/platforms/${TARGET}/arch-arm/usr/include --sysroot=${ANDROID_SYSROOT}"
+	export CC=$(${ANDROID_NDK_ROOT}/ndk-which gcc)
+	export LD=$(${ANDROID_NDK_ROOT}/ndk-which ld)
+	export CPP=$(${ANDROID_NDK_ROOT}/ndk-which cpp)
+	export CXX=$(${ANDROID_NDK_ROOT}/ndk-which g++)
+	export AS=$(${ANDROID_NDK_ROOT}/ndk-which as)
+	export AR=$(${ANDROID_NDK_ROOT}/ndk-which ar)
+	export RANLIB=$(${ANDROID_NDK_ROOT}/ndk-which ranlib)
+
+	export CFLAGS="-v --sysroot=${ANDROID_SYSROOT} -mandroid -march=${ARCH} -mfloat-abi=softfp -mfpu=vfp -mthumb"
+	export CPPFLAGS="${CFLAGS} -DANDROID -DCURL_STATICLIB -mthumb -mfloat-abi=softfp -mfpu=vfp -march=${ARCH} -I${VENDOR_DIR}/openssl-android/include/ -I${ANDROID_TOOLCHAIN}/include"
+	export LIBS="-lssl -lcrypto"
+	export LDFLAGS="-L${VENDOR_DIR}/openssl-android/${CURRENT_ARCH}"
 
 	./buildconf
 
-	EXITCODE=$?
-	if [ $EXITCODE -ne 0 ]; then
-		echo "Error running the buildconf program"
-		cd $PWD
-		exit $EXITCODE
-	fi
-fi
-
-export SYSROOT="$NDK_ROOT/platforms/$TARGET/arch-arm"
-export CPPFLAGS="-I$NDK_ROOT/platforms/$TARGET/arch-arm/usr/include --sysroot=$SYSROOT"
-export CC=$($NDK_ROOT/ndk-which gcc)
-export LD=$($NDK_ROOT/ndk-which ld)
-export CPP=$($NDK_ROOT/ndk-which cpp)
-export CXX=$($NDK_ROOT/ndk-which g++)
-export AS=$($NDK_ROOT/ndk-which as)
-export AR=$($NDK_ROOT/ndk-which ar)
-export RANLIB=$($NDK_ROOT/ndk-which ranlib)
-
-export LIBS="-lssl -lcrypto"
-export LDFLAGS="-L$SCRIPTPATH/obj/local/armeabi"
-./configure --host=arm-linux-androideabi --target=arm-linux-androideabi \
-            --with-ssl=$SSLPATH \
+	./configure \
+			--host=arm-linux-androideabi \
+			--target=arm-linux-androideabi \
+            --with-ssl=${VENDOR_DIR}/openssl-android \
             --enable-static \
             --disable-shared \
             --disable-verbose \
             --enable-threaded-resolver \
             --enable-libgcc \
-            --enable-ipv6
+            --enable-ipv6 \
+			--with-zlib
+	
+	make >> ../${LIBRARY_BUILD_LOG}-${CURRENT_ARCH}
+	
+	# installing
+	echo "Copying files..."	
 
-EXITCODE=$?
-if [ $EXITCODE -ne 0 ]; then
-  echo "Error running the configure program"
-  cd $PWD
-  exit $EXITCODE
-fi
+	mkdir -p ${LIBRARY_BUILD_DIR}/${CURRENT_ARCH}
 
-#Patch headers for 64-bit archs
-cd "$CURLPATH/include/curl"
-sed 's/#define CURL_SIZEOF_LONG 4/\
-#ifdef __LP64__\
-#define CURL_SIZEOF_LONG 8\
-#else\
-#define CURL_SIZEOF_LONG 4\
-#endif/'< curlbuild.h > curlbuild.h.temp
-
-mv curlbuild.h.temp curlbuild.h
-
-#Build cURL
-$NDK_ROOT/ndk-build -j$JOBS -C $SCRIPTPATH curl
-EXITCODE=$?
-if [ $EXITCODE -ne 0 ]; then
-	echo "Error running the ndk-build program"
-	exit $EXITCODE
-fi
-
-#Strip debug symbols and copy to the prebuilt folder
-PLATFORMS=(arm64-v8a x86_64 mips64 armeabi armeabi-v7a x86 mips)
-DESTDIR=$SCRIPTPATH/../../build/curl-android
-
-for p in ${PLATFORMS[*]}; do
-  mkdir -p $DESTDIR/$p
-  STRIP=$($SCRIPTPATH/ndk-which strip $p)
-
-  SRC=$SCRIPTPATH/obj/local/$p/libcurl.a
-  DEST=$DESTDIR/$p/libcurl.a
-
-  if [ -z "$STRIP" ]; then
-    echo "WARNING: Could not find 'strip' for $p"
-    cp $SRC $DEST
-  else
-    $STRIP $SRC --strip-debug -o $DEST
-  fi
+	for file in libcurl.a; do
+        file "lib/.libs/$file"
+        cp "lib/.libs/$file" "${LIBRARY_BUILD_DIR}/${CURRENT_ARCH}/$file"
+    done
+	
 done
 
-#Copying cURL headers
-cp -R $CURLPATH/include $DESTDIR/
-rm $DESTDIR/include/curl/.gitignore
+echo "Copying include files..."	
+cd ${BASE_DIR}
+cp -R ${LIBRARY_DIR}/include ${LIBRARY_BUILD_DIR}/
 
-cd $PWD
-exit 0
+echo "Copying files to vendor path..."
+rm -rf ${VENDOR_DIR}/${VENDOR_LIB_DIR}
+mkdir -p ${VENDOR_DIR}/${VENDOR_LIB_DIR}
+cp -R ${LIBRARY_BUILD_DIR}/* ${VENDOR_DIR}/${VENDOR_LIB_DIR}/
+
+echo "Finished"

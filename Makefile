@@ -3,7 +3,7 @@ git-update-submodules:
 	git submodule init
 	git submodule update
 
-build-android-curl:
+build-curl-android:
 	cd generator/curl-android && ./build.sh
 
 build-openssl-android:

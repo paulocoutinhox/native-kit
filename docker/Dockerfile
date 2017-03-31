@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y \
 	 autoconf \
 	 autotools-dev \
 	 automake \
-	 libtool-bin
+	 libtool-bin \
+	 cmake
 	 
 RUN apt-get clean
 

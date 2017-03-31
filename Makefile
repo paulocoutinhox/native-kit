@@ -23,7 +23,7 @@ build-curl-macos:
 	cd generator/curl-macos && ./build.sh
 
 docker-build:
-	docker build -t native-kit .
+	docker build -t native-kit ./docker
 
 docker-run:
 	@echo "Task to run on docker: $(task)"
@@ -31,4 +31,7 @@ docker-run:
 
 download-catch:
 	mkdir -p vendor/catch/
-	curl https://github.com/philsquared/Catch/releases/download/v1.8.2/catch.hpp -o "vendor/catch/catch.hpp"
+	curl -L https://github.com/philsquared/Catch/releases/download/v1.8.2/catch.hpp -o "vendor/catch/catch.hpp"
+
+run-tests:
+	cd tests && ./build.sh

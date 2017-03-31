@@ -36,6 +36,8 @@
 		"new": "cpp",
 		"ostream": "cpp",
 		"streambuf": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"functional": "cpp",
+		"utility": "cpp"
 	}
 }

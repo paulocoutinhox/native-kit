@@ -1,2 +1,4 @@
 .DS_Store
 generator/**/tmp
+tests/**/tmp
+.idea

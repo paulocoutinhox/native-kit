@@ -28,3 +28,7 @@ docker-build:
 docker-run:
 	@echo "Task to run on docker: $(task)"
 	docker run -it -v ${PWD}:/native-kit native-kit make $(task)
+
+download-catch:
+	mkdir -p vendor/catch/
+	curl https://github.com/philsquared/Catch/releases/download/v1.8.2/catch.hpp -o "vendor/catch/catch.hpp"

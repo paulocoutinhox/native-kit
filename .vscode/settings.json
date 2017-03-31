@@ -1,0 +1,41 @@
+// Place your settings in this file to overwrite the default settings
+{
+	"editor.formatOnSave": false,
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	"editor.wordWrap": "off",
+	"editor.detectIndentation": false,
+	"files.autoSave": "off",
+	"[cpp]": {
+		"editor.quickSuggestions": false
+	},
+	"[c]": {
+		"editor.quickSuggestions": false
+	},
+	"window.reopenFolders": "none",
+	"files.associations": {
+		"*.tcc": "cpp",
+		"cctype": "cpp",
+		"clocale": "cpp",
+		"cstdarg": "cpp",
+		"cstddef": "cpp",
+		"cstdio": "cpp",
+		"cstdlib": "cpp",
+		"cstring": "cpp",
+		"ctime": "cpp",
+		"cwchar": "cpp",
+		"cwctype": "cpp",
+		"exception": "cpp",
+		"fstream": "cpp",
+		"iomanip": "cpp",
+		"iosfwd": "cpp",
+		"iostream": "cpp",
+		"istream": "cpp",
+		"limits": "cpp",
+		"memory": "cpp",
+		"new": "cpp",
+		"ostream": "cpp",
+		"streambuf": "cpp",
+		"typeinfo": "cpp"
+	}
+}

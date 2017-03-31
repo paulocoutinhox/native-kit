@@ -1,5 +1,11 @@
 #!/bin/bash -e
 
+# validate
+if [ -z ${ANDROID_NDK_ROOT+x} ]; then
+	echo "Error: You need set ANDROID_NDK_ROOT environment variable"
+	exit 1
+fi
+
 # create temporary base path
 BASE_DIR="tmp"
 mkdir -p ${BASE_DIR}
@@ -15,7 +21,6 @@ VENDOR_DIR="`cd "../../../vendor/";pwd`"
 LIBRARY_VERSION="1.2.11"
 LIBRARY_TARBALL="zlib-${LIBRARY_VERSION}.tar.gz"
 LIBRARY_DIR="zlib-${LIBRARY_VERSION}"
-LIBRARY_BUILD_LOG="zlib-${LIBRARY_VERSION}.log"
 VENDOR_LIB_DIR="zlib-android"
 
 # android environment vars
@@ -133,16 +138,14 @@ for (( i=0; i<${#ARCHS[@]}; i++)); do
 	# specific library build part
 	export SYSROOT="${ANDROID_SYSROOT}"
 	export CFLAGS="--sysroot=${ANDROID_SYSROOT} -I${ANDROID_DEV}/include"	
-	export CPPFLAGS="--sysroot=${ANDROID_SYSROOT} -I${ANDROID_DEV}/include -I${VENDOR_DIR}/openssl-android/include/ -I${ANDROID_TOOLCHAIN}/include"
+	export CPPFLAGS="--sysroot=${ANDROID_SYSROOT} -I${ANDROID_DEV}/include -I${ANDROID_TOOLCHAIN}/include"
 	export CXXFLAGS="${CPPFLAGS}"
 	
-	export TARGETMACH=
-
-	make distclean >> ../${arch}-${LIBRARY_BUILD_LOG}
-	./configure >> ../${arch}-${LIBRARY_BUILD_LOG}
-	make >> ../${arch}-${LIBRARY_BUILD_LOG}
+	make distclean 
+	./configure --static
+	make
 	
-	# installing
+	# install process
 	echo "Copying files..."	
 
 	mkdir -p ${LIBRARY_BUILD_DIR}/${arch}
@@ -157,7 +160,7 @@ done
 echo "Copying include files..."	
 cd ${BASE_DIR}
 mkdir -p ${LIBRARY_BUILD_DIR}/include/
-cp -R ${LIBRARY_DIR}/include/libz ${LIBRARY_BUILD_DIR}/include/
+cp -R ${LIBRARY_DIR}/z*.h ${LIBRARY_BUILD_DIR}/include/
 
 echo "Copying files to vendor path..."
 rm -rf ${VENDOR_DIR}/${VENDOR_LIB_DIR}

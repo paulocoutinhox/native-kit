@@ -1,5 +1,11 @@
 #!/bin/bash -e
 
+# validate
+if [ -z ${ANDROID_NDK_ROOT+x} ]; then
+	echo "Error: You need set ANDROID_NDK_ROOT environment variable"
+	exit 1
+fi
+
 # create temporary base path
 BASE_DIR="tmp"
 mkdir -p ${BASE_DIR}
@@ -15,7 +21,6 @@ VENDOR_DIR="`cd "../../../vendor/";pwd`"
 LIBRARY_VERSION="7.53.1"
 LIBRARY_TARBALL="curl-${LIBRARY_VERSION}.tar.gz"
 LIBRARY_DIR="curl-${LIBRARY_VERSION}"
-LIBRARY_BUILD_LOG="curl-${LIBRARY_VERSION}.log"
 VENDOR_LIB_DIR="curl-android"
 
 # android environment vars
@@ -132,7 +137,7 @@ for (( i=0; i<${#ARCHS[@]}; i++)); do
 
 	# specific library build part
 	export SYSROOT="${ANDROID_SYSROOT}"
-	export CFLAGS="--sysroot=${ANDROID_SYSROOT} -I${ANDROID_DEV}/include"	
+	export CFLAGS="--sysroot=${ANDROID_SYSROOT} -I${ANDROID_DEV}/include -I${VENDOR_DIR}/openssl-android/include/"
 	export CPPFLAGS="--sysroot=${ANDROID_SYSROOT} -I${ANDROID_DEV}/include -DANDROID -DCURL_STATICLIB -I${VENDOR_DIR}/openssl-android/include/ -I${ANDROID_TOOLCHAIN}/include"
 	export CXXFLAGS="${CPPFLAGS}"
 	export LDFLAGS="-L${VENDOR_DIR}/openssl-android/${arch}"
@@ -143,17 +148,29 @@ for (( i=0; i<${#ARCHS[@]}; i++)); do
 			--host=${host} \
 			--target=${host} \
             --with-ssl=${VENDOR_DIR}/openssl-android/${arch} \
-            --enable-static \
+			--enable-static \
             --disable-shared \
             --disable-verbose \
             --enable-threaded-resolver \
             --enable-libgcc \
             --enable-ipv6 \
-			--with-zlib
+			--with-zlib \
+			--disable-ldaps \
+			--disable-ldap \
+			--disable-ftp \
+			--disable-file \
+			--disable-telnet \
+			--disable-dict \
+			--disable-tftp \
+			--disable-pop3 \
+			--disable-imap \
+			--disable-smtp \
+			--disable-rtsp \
+			--disable-gopher
 	
-	make >> ../${arch}-${LIBRARY_BUILD_LOG}
+	make
 	
-	# installing
+	# install process
 	echo "Copying files..."	
 
 	mkdir -p ${LIBRARY_BUILD_DIR}/${arch}

@@ -1,5 +1,11 @@
 #!/bin/bash -e
 
+# validate
+if [ -z ${ANDROID_NDK_ROOT+x} ]; then
+	echo "Error: You need set ANDROID_NDK_ROOT environment variable"
+	exit 1
+fi
+
 # create temporary base path
 BASE_DIR="tmp"
 mkdir -p ${BASE_DIR}
@@ -15,7 +21,6 @@ VENDOR_DIR="`cd "../../../vendor/";pwd`"
 LIBRARY_VERSION="1.1.0"
 LIBRARY_TARBALL="openssl-${LIBRARY_VERSION}.tar.gz"
 LIBRARY_DIR="openssl-${LIBRARY_VERSION}"
-LIBRARY_BUILD_LOG="openssl-${LIBRARY_VERSION}.log"
 VENDOR_LIB_DIR="openssl-android"
 
 # android environment vars
@@ -151,19 +156,20 @@ for (( i=0; i<${#ARCHS[@]}; i++)); do
 		lib64		
 	)
 
+	echo ${ANDROID_DEV}/${ANDROID_LIB_DIR[$i]}
 	export SYSROOT="${ANDROID_SYSROOT}"
 	export CFLAGS="--sysroot=${ANDROID_SYSROOT} -I${ANDROID_DEV}/include"	
 	export CPPFLAGS="--sysroot=${ANDROID_SYSROOT} -I${ANDROID_DEV}/include"
 	export CXXFLAGS="${CPPFLAGS}"
-	export xCFLAGS="-B${ANDROID_DEV}/${ANDROID_LIB_DIR[$i]} -fPIC -DOPENSSL_PIC -DDSO_DLFCN -DHAVE_DLFCN_H -mandroid -O3 -fomit-frame-pointer -Wall -I${ANDROID_DEV}/include ${OPENSSL_OS[$i]}"
+	export xCFLAGS="-B${ANDROID_DEV}/${ANDROID_LIB_DIR[$i]} -fPIC -DZLIB -DOPENSSL_PIC -DDSO_DLFCN -DHAVE_DLFCN_H -mandroid -O3 -fomit-frame-pointer -Wall -I${ANDROID_DEV}/include ${OPENSSL_OS[$i]}"
 
-	./Configure ${xCFLAGS} no-shared no-asm zlib no-ssl3 no-unit-test no-comp no-hw no-engine --openssldir=${LIBRARY_BUILD_DIR} > ../${arch}-${LIBRARY_BUILD_LOG}
+	./Configure ${xCFLAGS} no-shared no-asm zlib no-ssl3 no-unit-test no-hw no-engine --openssldir=${LIBRARY_BUILD_DIR}
 
-	make clean >> ../${arch}-${LIBRARY_BUILD_LOG}
-	make depend >> ../${arch}-${LIBRARY_BUILD_LOG}
-	make all >> ../${arch}-${LIBRARY_BUILD_LOG}
+	make clean
+	make depend
+	make all
 	
-	# installing
+	# install process
 	echo "Copying files..."	
 
 	mkdir -p ${LIBRARY_BUILD_DIR}/${arch}

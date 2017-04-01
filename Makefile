@@ -1,8 +1,8 @@
+build-native-kit-android:
+	cd generator/native-kit-android && ./build.sh
+
 build-native-kit-macos:
 	cd generator/native-kit-macos && ./build.sh
-
-build-examples-macosx:
-	cd generator/examples-macos && ./build.sh
 
 build-zlib-android:
 	cd generator/zlib-android && ./build.sh

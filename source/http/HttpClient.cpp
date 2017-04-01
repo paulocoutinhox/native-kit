@@ -5,7 +5,7 @@
 #include <curl/easy.h>
 #include <curl/curlbuild.h>
 
-std::string NK::HttpClient::get(const std::string url)
+std::string NK::HttpClient::get(std::string url)
 {
 	std::string readBuffer;
 

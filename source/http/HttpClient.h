@@ -11,7 +11,7 @@ namespace NK
 	{
 		
 		public:
-			std::string get(const std::string url);
+			std::string get(std::string url);
 		
 		private:
 			static size_t writeDataCallback(void *contents, size_t size, size_t nmemb, void *userdata);

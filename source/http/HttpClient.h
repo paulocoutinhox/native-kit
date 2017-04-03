@@ -3,18 +3,33 @@
 
 #include <string>
 #include <sstream>
+#include <curl/curl.h>
 
-namespace NK 
+namespace NK
 {
 
-	class HttpClient 
+	class HttpClient
 	{
-		
-		public:
-			std::string get(std::string url);
-		
-		private:
-			static size_t writeDataCallback(void *contents, size_t size, size_t nmemb, void *userdata);
+
+	public:
+		HttpClient();
+
+		~HttpClient();
+
+		std::string get(std::string url);
+
+	private:
+		CURL *curl;
+
+		static size_t writeDataCallback(void *contents, size_t size, size_t nmemb, void *userdata);
+
+		bool sslVerifyPeer;
+		bool sslVerifyHost;
+		bool followLocation;
+		bool verbose;
+		bool forbideReuse;
+
+		std::string userAgent;
 
 	};
 

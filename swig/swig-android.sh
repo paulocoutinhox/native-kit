@@ -1,0 +1,1 @@
+swig -c++ -java -package com.prsolucoes.nativekit -outdir ../build/native-kit-android/app/src/main/java/com/prsolucoes/nativekit/ -o ../build/native-kit-android/app/src/main/cpp/native_kit_wrap.cpp NativeKit.i

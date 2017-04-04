@@ -1,6 +1,9 @@
 build-native-kit-android:
 	cd generator/native-kit-android && ./build.sh
 
+build-swig-android:
+	cd swig && ./swig-android.sh
+
 build-native-kit-macos:
 	cd generator/native-kit-macos && ./build.sh
 

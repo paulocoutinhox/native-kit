@@ -179,13 +179,13 @@ for (( i=0; i<${#ARCHS[@]}; i++)); do
         file "lib/.libs/$file"
         cp "lib/.libs/$file" "${LIBRARY_BUILD_DIR}/${arch}/$file"
     done
+
+	echo "Copying include files..."	
+	
+	mkdir -p ${LIBRARY_BUILD_DIR}/${arch}/include/
+	cp -R include/curl ${LIBRARY_BUILD_DIR}/${arch}/include/
 	
 done
-
-echo "Copying include files..."	
-cd ${BASE_DIR}
-mkdir -p ${LIBRARY_BUILD_DIR}/include/
-cp -R ${LIBRARY_DIR}/include/curl ${LIBRARY_BUILD_DIR}/include/
 
 echo "Copying files to vendor path..."
 rm -rf ${VENDOR_DIR}/${VENDOR_LIB_DIR}

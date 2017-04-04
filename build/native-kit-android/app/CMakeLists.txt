@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 
 include_directories(
 	"../../../source"
-	"../../../vendor/curl-android/include"
+	"../../../vendor/curl-android/${ANDROID_ABI}/include"
 )
 
 link_directories(
@@ -15,7 +15,7 @@ link_directories(
 add_library(
 	native-kit-android
 	SHARED
-	src/main/cpp/HttpClient_JNI.cpp
+	src/main/cpp/native_kit_wrap.cpp
 )
 
 target_link_libraries(

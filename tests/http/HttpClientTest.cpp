@@ -22,3 +22,12 @@ TEST_CASE("HttpClient - Get Request HTTPS", "[HttpClient]")
 	
 	REQUIRE(response.find("\"url\": \"" + url + "\"") != std::string::npos);
 }
+
+TEST_CASE("HttpClient - Get Request UTF8", "[HttpClient]")
+{
+	std::string url = "https://httpbin.org/get?coração'";
+	NK::HttpClient *client = new NK::HttpClient();
+	std::string response = client->get(url);
+	
+	REQUIRE(response.find("\"url\": \"" + url + "\"") != std::string::npos);
+}

@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
                 tvContent.setText(result);
-                Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show();
             }
 
         }.execute();

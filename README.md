@@ -1,6 +1,6 @@
 # Native Kit
 
-This is a framework that use the same codebase for all native platforms (Android, iOS, Macos, Linux and Windows).  
+This is a framework that use the same codebase for all native platforms (Android, iOS, MacOS, Linux and Windows).  
 
 # Some projects can be compiled using Docker
 

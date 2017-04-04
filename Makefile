@@ -1,3 +1,6 @@
+build-native-kit-android-apk:
+	cd build/native-kit-android && ./gradlew build
+
 build-native-kit-android:
 	cd generator/native-kit-android && ./build.sh
 

@@ -15,12 +15,16 @@ NK::HttpClient::HttpClient()
 	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, sslVerifyPeer);
 	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, sslVerifyHost);
 	curl_easy_setopt(curl, CURLOPT_FORBID_REUSE, forbideReuse);
-	curl_easy_setopt(curl, CURLOPT_USERAGENT, &userAgent);
+	curl_easy_setopt(curl, CURLOPT_USERAGENT, userAgent.c_str());
+	curl_easy_setopt(curl, CURLOPT_CAPATH, "/system/etc/security/cacerts");
 }
 
 NK::HttpClient::~HttpClient()
 {
-	curl_easy_cleanup(curl);
+	if (curl)
+	{
+		curl_easy_cleanup(curl);
+	}
 }
 
 std::string NK::HttpClient::get(std::string url)

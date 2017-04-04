@@ -1,4 +1,4 @@
 .DS_Store
-generator/**/tmp
+projects/**/tmp
 tests/**/tmp
 .idea

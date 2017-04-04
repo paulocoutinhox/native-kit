@@ -38,6 +38,11 @@
 		"streambuf": "cpp",
 		"typeinfo": "cpp",
 		"functional": "cpp",
-		"utility": "cpp"
+		"utility": "cpp",
+		"cmath": "cpp",
+		"sstream": "cpp",
+		"stdexcept": "cpp",
+		"tuple": "cpp",
+		"type_traits": "cpp"
 	}
 }

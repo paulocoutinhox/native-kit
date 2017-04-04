@@ -25,7 +25,7 @@ TEST_CASE("HttpClient - Get Request HTTPS", "[HttpClient]")
 
 TEST_CASE("HttpClient - Get Request UTF8", "[HttpClient]")
 {
-	std::string url = "https://httpbin.org/get?coração'";
+	std::string url = "https://httpbin.org/get?coracao'";
 	NK::HttpClient *client = new NK::HttpClient();
 	std::string response = client->get(url);
 	

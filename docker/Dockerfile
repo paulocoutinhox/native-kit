@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install -y \
 	 autotools-dev \
 	 automake \
 	 libtool-bin \
-	 cmake
+	 cmake \
+	 default-jdk
 	 
 RUN apt-get clean
 

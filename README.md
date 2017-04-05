@@ -10,9 +10,16 @@ To build the docker container:
 make docker-build
 ```
 
+To run tasks, you can use:
 
 ```
-make docker-run task=run-tests
+make docker-run task=[make task name]
+```
+
+Example:
+
+```
+make docker-run task=build-native-kit-android-sdk
 ```
 
 # Android

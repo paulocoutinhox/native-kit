@@ -2,13 +2,17 @@
 clean:
 	rm -rf projects/curl-android/tmp
 	rm -rf projects/curl-macos/tmp
+	rm -rf projects/curl-linux64/tmp
 	rm -rf projects/native-kit-android/build
 	rm -rf projects/native-kit-android/app/build
 	rm -rf projects/native-kit-macos/tmp
+	rm -rf projects/native-kit-linux64/tmp
 	rm -rf projects/openssl-android/tmp
 	rm -rf projects/openssl-macos/tmp
+	rm -rf projects/openssl-linux64/tmp
 	rm -rf projects/zlib-android/tmp
 	rm -rf projects/zlib-macos/tmp
+	rm -rf projects/zlib-linux64/tmp
 	rm -rf tests/tmp
 
 docker-build:
@@ -62,3 +66,16 @@ build-native-kit-android-sdk:
 	cd projects/native-kit-android && ./gradlew build
 	mkdir -p sdk/android
 	cp projects/native-kit-android/app/build/outputs/apk/app-release-unsigned.apk sdk/android/native-kit.apk
+
+# linux64
+build-zlib-linux64:
+	cd projects/zlib-linux64 && ./build.sh
+
+build-openssl-linux64:
+	cd projects/openssl-linux64 && ./build.sh
+
+build-curl-linux64:
+	cd projects/curl-linux64 && ./build.sh
+
+build-native-kit-linux64-sdk:
+	cd projects/native-kit-linux64 && ./build.sh

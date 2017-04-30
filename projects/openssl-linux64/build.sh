@@ -12,7 +12,7 @@ mkdir -p ${VENDOR_DIR}
 VENDOR_DIR="`cd "../../../vendor/";pwd`"
 
 # common vars
-LIBRARY_VERSION="1.1.0"
+LIBRARY_VERSION="1.1.0e"
 LIBRARY_TARBALL="openssl-${LIBRARY_VERSION}.tar.gz"
 LIBRARY_DIR="openssl-${LIBRARY_VERSION}"
 VENDOR_LIB_DIR="openssl-linux64"

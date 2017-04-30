@@ -31,29 +31,32 @@ fi
 # build process
 cd ${LIBRARY_DIR}
 
-cmake \
-	-DOPENSSL_INCLUDE_DIR=${VENDOR_DIR}/openssl-linux64/include/ \
-	-DOPENSSL_SSL_LIBRARY=${VENDOR_DIR}/openssl-linux64/libssl.a \
-	-DOPENSSL_CRYPTO_LIBRARY=${VENDOR_DIR}/openssl-linux64/libcrypto.a \
-	-DCURL_STATICLIB=true \
-	-DCURL_ZLIB=true \
-	-DCURL_DISABLE_LDAPS=true \
-	-DCURL_DISABLE_LDAP=true \
-	-DCURL_DISABLE_FTP=true \
-	-DCURL_DISABLE_FILE=true \
-	-DCURL_DISABLE_TELNET=true \
-	-DCURL_DISABLE_DICT=true \
-	-DCURL_DISABLE_TFTP=true \
-	-DCURL_DISABLE_POP3=true \
-	-DCURL_DISABLE_IMAP=true \
-	-DCURL_DISABLE_SMTP=true \
-	-DCURL_DISABLE_RTSP=true \
-	-DCURL_DISABLE_GOPHER=true \
-	-DCMAKE_USE_OPENSSL=true \
-	.
+./configure \
+	--prefix=${PWD}/build \
+	--with-ssl=${VENDOR_DIR}/openssl-linux64 \
+	--with-zlib=${VENDOR_DIR}/zlib-linux64 \
+	--enable-static \
+	--disable-shared \
+	--disable-verbose \
+	--enable-threaded-resolver \
+	--enable-libgcc \
+	--enable-ipv6 \
+	--disable-ldaps \
+	--disable-ldap \
+	--disable-ftp \
+	--disable-file \
+	--disable-telnet \
+	--disable-dict \
+	--disable-tftp \
+	--disable-pop3 \
+	--disable-imap \
+	--disable-smtp \
+	--disable-rtsp \
+	--disable-gopher
 
 make
-	
+make install
+
 # install process
 rm -rf ${VENDOR_DIR}/${VENDOR_LIB_DIR}
 mkdir -p ${VENDOR_DIR}/${VENDOR_LIB_DIR}
@@ -61,13 +64,13 @@ mkdir -p ${VENDOR_DIR}/${VENDOR_LIB_DIR}
 echo "Copying include files..."	
 
 mkdir -p ${VENDOR_DIR}/${VENDOR_LIB_DIR}/include/
-cp -R include/curl ${VENDOR_DIR}/${VENDOR_LIB_DIR}/include/
+cp -R build/include/curl ${VENDOR_DIR}/${VENDOR_LIB_DIR}/include/
 
 echo "Copying files to vendor path..."
 
 for file in libcurl.a; do
-	file "lib/$file"
-	cp "lib/$file" "${VENDOR_DIR}/${VENDOR_LIB_DIR}/$file"
+	file "build/lib/$file"
+	cp "build/lib/$file" "${VENDOR_DIR}/${VENDOR_LIB_DIR}/$file"
 done
 
 echo "Finished"

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 
 if (APPLE)
 	link_directories(
-		"../sdk/native-kit-macos"
+		"../sdk/macos"
 		"../vendor/curl-macos"
 		"../vendor/openssl-macos"
 		"../vendor/zlib-macos"
@@ -11,7 +11,7 @@ if (APPLE)
 	include_directories("../vendor/curl-macos/include")
 elseif (UNIX)	
 	link_directories(
-		"../sdk/native-kit-linux64"
+		"../sdk/linux64"
 		"../vendor/curl-linux64"
 		"../vendor/openssl-linux64"
 		"../vendor/zlib-linux64"
@@ -35,8 +35,9 @@ add_executable(
 	http/HttpClientTest.cpp
 )
 
+target_link_libraries(HttpClientTest NativeKit)
+target_link_libraries(HttpClientTest curl)
 target_link_libraries(HttpClientTest ssl)
 target_link_libraries(HttpClientTest crypto)
-target_link_libraries(HttpClientTest curl)
 target_link_libraries(HttpClientTest z)
-target_link_libraries(HttpClientTest NativeKit)
+target_link_libraries(HttpClientTest pthread)

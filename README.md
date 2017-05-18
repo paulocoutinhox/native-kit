@@ -2,6 +2,14 @@
 
 This is a framework that use the same codebase for all native platforms (Android, iOS, MacOS, Linux and Windows).  
 
+# Help
+
+Type the following command to get all possible execute options:
+
+```
+make help
+```
+
 # Some projects can be compiled using Docker
 
 To build the docker container:

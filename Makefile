@@ -1,4 +1,41 @@
+.DEFAULT_GOAL := help
+
 # general
+help:
+	@echo "Type: make [rule]. Available options are:"
+	@echo ""
+	@echo "> GENERAL" 
+	@echo "- help"
+	@echo "- clean"
+	@echo "- docker-build"
+	@echo "- docker-run task=[one of make rule]"
+	@echo ""
+	@echo "> NATIVE"
+	@echo "- download-catch"
+	@echo "- run-tests"
+	@echo "- clean-tests"
+	@echo ""
+	@echo "> MACOS"
+	@echo "- build-zlib-macos"
+	@echo "- build-openssl-macos"
+	@echo "- build-curl-macos"
+	@echo "- build-native-kit-macos-sdk"
+	@echo ""
+	@echo "> ANDROID"
+	@echo "- build-zlib-android"
+	@echo "- build-openssl-android"
+	@echo "- build-curl-android"
+	@echo "- build-swig-android"
+	@echo "- build-native-kit-android"
+	@echo "- build-native-kit-android-sdk"
+	@echo ""
+	@echo "> LINUX-64"
+	@echo "- build-zlib-linux64"
+	@echo "- build-openssl-linux64"
+	@echo "- build-curl-linux64"
+	@echo "- build-native-kit-linux64-sdk"
+	@echo ""
+
 clean:
 	rm -rf projects/curl-android/tmp
 	rm -rf projects/curl-macos/tmp

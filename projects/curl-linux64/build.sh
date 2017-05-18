@@ -12,7 +12,7 @@ mkdir -p ${VENDOR_DIR}
 VENDOR_DIR="`cd "../../../vendor/";pwd`"
 
 # common vars
-LIBRARY_VERSION="7.53.1"
+LIBRARY_VERSION="7.54.0"
 LIBRARY_TARBALL="curl-${LIBRARY_VERSION}.tar.gz"
 LIBRARY_DIR="curl-${LIBRARY_VERSION}"
 VENDOR_LIB_DIR="curl-linux64"
@@ -31,9 +31,15 @@ fi
 # build process
 cd ${LIBRARY_DIR}
 
+export CFLAGS="-I${VENDOR_DIR}/zlib-linux64/include -I${VENDOR_DIR}/openssl-linux64/include"
+export CPPFLAGS="-I${VENDOR_DIR}/zlib-linux64/include -I${VENDOR_DIR}/openssl-linux64/include"
+export CXXFLAGS="${CPPFLAGS}"
+export LDFLAGS="-L${VENDOR_DIR}/zlib-linux64 -L${VENDOR_DIR}/openssl-linux64"
+
 ./configure \
 	--prefix=${PWD}/build \
 	--with-ssl=${VENDOR_DIR}/openssl-linux64 \
+	--with-libssl-prefix=${VENDOR_DIR}/openssl-linux64 \
 	--with-zlib=${VENDOR_DIR}/zlib-linux64 \
 	--enable-static \
 	--disable-shared \

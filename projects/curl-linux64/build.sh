@@ -31,15 +31,11 @@ fi
 # build process
 cd ${LIBRARY_DIR}
 
-export CFLAGS="-I${VENDOR_DIR}/zlib-linux64/include -I${VENDOR_DIR}/openssl-linux64/include"
-export CPPFLAGS="-I${VENDOR_DIR}/zlib-linux64/include -I${VENDOR_DIR}/openssl-linux64/include"
-export CXXFLAGS="${CPPFLAGS}"
-export LDFLAGS="-L${VENDOR_DIR}/zlib-linux64 -L${VENDOR_DIR}/openssl-linux64"
+export LIBS="-ldl -lpthread"
 
 ./configure \
 	--prefix=${PWD}/build \
 	--with-ssl=${VENDOR_DIR}/openssl-linux64 \
-	--with-libssl-prefix=${VENDOR_DIR}/openssl-linux64 \
 	--with-zlib=${VENDOR_DIR}/zlib-linux64 \
 	--enable-static \
 	--disable-shared \

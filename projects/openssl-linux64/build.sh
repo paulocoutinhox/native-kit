@@ -44,13 +44,14 @@ mkdir -p ${VENDOR_DIR}/${VENDOR_LIB_DIR}
 echo "Copying include files..."	
 
 mkdir -p ${VENDOR_DIR}/${VENDOR_LIB_DIR}/include/
+mkdir -p ${VENDOR_DIR}/${VENDOR_LIB_DIR}/lib/
 cp -R include/openssl ${VENDOR_DIR}/${VENDOR_LIB_DIR}/include/
 
 echo "Copying files to vendor path..."
 
 for file in libcrypto.a libssl.a; do
 	file "$file"
-	cp "$file" "${VENDOR_DIR}/${VENDOR_LIB_DIR}/$file"
+	cp "$file" "${VENDOR_DIR}/${VENDOR_LIB_DIR}/lib/$file"
 done
 
 echo "Finished"

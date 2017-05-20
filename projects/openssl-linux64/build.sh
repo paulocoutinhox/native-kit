@@ -31,7 +31,7 @@ fi
 # build process
 cd ${LIBRARY_DIR}
 
-./Configure no-shared zlib --with-zlib-include=${VENDOR_DIR}/zlib-linux64/include --with-zlib-lib=${VENDOR_DIR}/zlib-linux64 --openssldir=. linux-x86_64
+./Configure no-shared zlib --with-zlib-include=${VENDOR_DIR}/zlib-linux64/include --with-zlib-lib=${VENDOR_DIR}/zlib-linux64/lib --openssldir=. linux-x86_64
 
 make clean
 make depend

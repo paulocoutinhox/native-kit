@@ -7,9 +7,9 @@ include_directories(
 )
 
 link_directories(
-	"../../vendor/curl-linux64"
-	"../../vendor/openssl-linux64"
-	"../../vendor/zlib-linux64"
+	"../../vendor/curl-linux64/lib"
+	"../../vendor/openssl-linux64/lib"
+	"../../vendor/zlib-linux64/lib"
 )
 
 add_library(

@@ -12,9 +12,9 @@ if (APPLE)
 elseif (UNIX)	
 	link_directories(
 		"../sdk/linux64"
-		"../vendor/curl-linux64"
-		"../vendor/openssl-linux64"
-		"../vendor/zlib-linux64"
+		"../vendor/curl-linux64/lib"
+		"../vendor/openssl-linux64/lib"
+		"../vendor/zlib-linux64/lib"
 	)
 
 	include_directories("../vendor/curl-linux64/include")
@@ -41,3 +41,4 @@ target_link_libraries(HttpClientTest ssl)
 target_link_libraries(HttpClientTest crypto)
 target_link_libraries(HttpClientTest z)
 target_link_libraries(HttpClientTest pthread)
+target_link_libraries(HttpClientTest dl)

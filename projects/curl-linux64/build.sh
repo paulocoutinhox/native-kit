@@ -66,13 +66,14 @@ mkdir -p ${VENDOR_DIR}/${VENDOR_LIB_DIR}
 echo "Copying include files..."	
 
 mkdir -p ${VENDOR_DIR}/${VENDOR_LIB_DIR}/include/
+mkdir -p ${VENDOR_DIR}/${VENDOR_LIB_DIR}/lib/
 cp -R build/include/curl ${VENDOR_DIR}/${VENDOR_LIB_DIR}/include/
 
 echo "Copying files to vendor path..."
 
 for file in libcurl.a; do
 	file "build/lib/$file"
-	cp "build/lib/$file" "${VENDOR_DIR}/${VENDOR_LIB_DIR}/$file"
+	cp "build/lib/$file" "${VENDOR_DIR}/${VENDOR_LIB_DIR}/lib/$file"
 done
 
 echo "Finished"

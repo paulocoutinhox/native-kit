@@ -9,7 +9,7 @@ NK::HttpClient::HttpClient()
 	curl = curl_easy_init();
 
 	userAgent = "NativeKit";
-
+	
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, followLocation);
 	curl_easy_setopt(curl, CURLOPT_VERBOSE, verbose);
 	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, sslVerifyPeer);

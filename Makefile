@@ -12,7 +12,7 @@ help:
 	@echo ""
 	@echo "> NATIVE"
 	@echo "- download-catch"
-	@echo "- run-tests"
+	@echo "- test"
 	@echo "- clean-tests"
 	@echo ""
 	@echo "> MACOS"
@@ -64,7 +64,7 @@ download-catch:
 	mkdir -p vendor/catch/
 	curl -L https://github.com/philsquared/Catch/releases/download/v1.8.2/catch.hpp -o "vendor/catch/catch.hpp"
 
-run-tests:
+test:
 	cd tests && ./build.sh
 
 clean-tests:

@@ -9,6 +9,7 @@ help:
 	@echo "- clean"
 	@echo "- docker-build"
 	@echo "- docker-run task=[one of make rule]"
+	@echo "- docker-run-bash"
 	@echo ""
 	@echo "> NATIVE"
 	@echo "- download-catch"
@@ -60,6 +61,9 @@ docker-build:
 docker-run:
 	@echo "Task to run on docker: $(task)"
 	docker run -it -v ${PWD}:/native-kit native-kit make $(task)
+
+docker-run-bash:
+	docker run -it -v ${PWD}:/native-kit native-kit bash
 
 # native
 download-catch:

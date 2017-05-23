@@ -39,8 +39,60 @@ public class HttpClient {
     this(NativeKitJNI.new_HttpClient(), true);
   }
 
-  public String get(String url) {
-    return NativeKitJNI.HttpClient_get(swigCPtr, this, url);
+  public void reset() {
+    NativeKitJNI.HttpClient_reset(swigCPtr, this);
+  }
+
+  public String doGet(String url) {
+    return NativeKitJNI.HttpClient_doGet(swigCPtr, this, url);
+  }
+
+  public String doPost(String url, String data) {
+    return NativeKitJNI.HttpClient_doPost(swigCPtr, this, url, data);
+  }
+
+  public String doPut(String url, String data) {
+    return NativeKitJNI.HttpClient_doPut(swigCPtr, this, url, data);
+  }
+
+  public String doDelete(String url) {
+    return NativeKitJNI.HttpClient_doDelete(swigCPtr, this, url);
+  }
+
+  public String doHead(String url) {
+    return NativeKitJNI.HttpClient_doHead(swigCPtr, this, url);
+  }
+
+  public String doPatch(String url) {
+    return NativeKitJNI.HttpClient_doPatch(swigCPtr, this, url);
+  }
+
+  public void setSSLVerifyPeer(boolean sslVerifyPeer) {
+    NativeKitJNI.HttpClient_setSSLVerifyPeer(swigCPtr, this, sslVerifyPeer);
+  }
+
+  public void setSSLVerifyHost(boolean sslVerifyHost) {
+    NativeKitJNI.HttpClient_setSSLVerifyHost(swigCPtr, this, sslVerifyHost);
+  }
+
+  public void setFollowLocation(boolean followLocation) {
+    NativeKitJNI.HttpClient_setFollowLocation(swigCPtr, this, followLocation);
+  }
+
+  public void setVerbose(boolean verbose) {
+    NativeKitJNI.HttpClient_setVerbose(swigCPtr, this, verbose);
+  }
+
+  public void setForbideReuse(boolean forbideReuse) {
+    NativeKitJNI.HttpClient_setForbideReuse(swigCPtr, this, forbideReuse);
+  }
+
+  public void setTimeout(int timeout) {
+    NativeKitJNI.HttpClient_setTimeout(swigCPtr, this, timeout);
+  }
+
+  public void setUserAgent(String userAgent) {
+    NativeKitJNI.HttpClient_setUserAgent(swigCPtr, this, userAgent);
   }
 
 }

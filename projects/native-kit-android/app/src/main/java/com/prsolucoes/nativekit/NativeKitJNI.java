@@ -11,5 +11,18 @@ package com.prsolucoes.nativekit;
 public class NativeKitJNI {
   public final static native long new_HttpClient();
   public final static native void delete_HttpClient(long jarg1);
-  public final static native String HttpClient_get(long jarg1, HttpClient jarg1_, String jarg2);
+  public final static native void HttpClient_reset(long jarg1, HttpClient jarg1_);
+  public final static native String HttpClient_doGet(long jarg1, HttpClient jarg1_, String jarg2);
+  public final static native String HttpClient_doPost(long jarg1, HttpClient jarg1_, String jarg2, String jarg3);
+  public final static native String HttpClient_doPut(long jarg1, HttpClient jarg1_, String jarg2, String jarg3);
+  public final static native String HttpClient_doDelete(long jarg1, HttpClient jarg1_, String jarg2);
+  public final static native String HttpClient_doHead(long jarg1, HttpClient jarg1_, String jarg2);
+  public final static native String HttpClient_doPatch(long jarg1, HttpClient jarg1_, String jarg2);
+  public final static native void HttpClient_setSSLVerifyPeer(long jarg1, HttpClient jarg1_, boolean jarg2);
+  public final static native void HttpClient_setSSLVerifyHost(long jarg1, HttpClient jarg1_, boolean jarg2);
+  public final static native void HttpClient_setFollowLocation(long jarg1, HttpClient jarg1_, boolean jarg2);
+  public final static native void HttpClient_setVerbose(long jarg1, HttpClient jarg1_, boolean jarg2);
+  public final static native void HttpClient_setForbideReuse(long jarg1, HttpClient jarg1_, boolean jarg2);
+  public final static native void HttpClient_setTimeout(long jarg1, HttpClient jarg1_, int jarg2);
+  public final static native void HttpClient_setUserAgent(long jarg1, HttpClient jarg1_, String jarg2);
 }

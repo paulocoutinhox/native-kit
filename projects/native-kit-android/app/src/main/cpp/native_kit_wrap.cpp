@@ -262,7 +262,18 @@ SWIGEXPORT void JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_delete_1HttpC
 }
 
 
-SWIGEXPORT jstring JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT void JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1reset(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  (arg1)->reset();
+}
+
+
+SWIGEXPORT jstring JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1doGet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jstring jresult = 0 ;
   NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
   std::string arg2 ;
@@ -280,9 +291,245 @@ SWIGEXPORT jstring JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient
   if (!arg2_pstr) return 0;
   (&arg2)->assign(arg2_pstr);
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (arg1)->get(arg2);
+  result = (arg1)->doGet(arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1doPost(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+  jstring jresult = 0 ;
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  result = (arg1)->doPost(arg2,arg3);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1doPut(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+  jstring jresult = 0 ;
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  result = (arg1)->doPut(arg2,arg3);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1doDelete(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jstring jresult = 0 ;
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  std::string arg2 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = (arg1)->doDelete(arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1doHead(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jstring jresult = 0 ;
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  std::string arg2 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = (arg1)->doHead(arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1doPatch(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jstring jresult = 0 ;
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  std::string arg2 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = (arg1)->doPatch(arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1setSSLVerifyPeer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  (arg1)->setSSLVerifyPeer(arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1setSSLVerifyHost(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  (arg1)->setSSLVerifyHost(arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1setFollowLocation(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  (arg1)->setFollowLocation(arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1setVerbose(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  (arg1)->setVerbose(arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1setForbideReuse(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  (arg1)->setForbideReuse(arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1setTimeout(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  arg2 = (int)jarg2; 
+  (arg1)->setTimeout(arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1setUserAgent(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  NK::HttpClient *arg1 = (NK::HttpClient *) 0 ;
+  std::string arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(NK::HttpClient **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return ;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  (arg1)->setUserAgent(arg2);
 }
 
 

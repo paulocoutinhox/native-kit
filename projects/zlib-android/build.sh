@@ -24,8 +24,17 @@ LIBRARY_DIR="zlib-${LIBRARY_VERSION}"
 VENDOR_LIB_DIR="zlib-android"
 
 # android environment vars
-ANDROID_PLATFORM=android-21
 ANDROID_TOOLCHAIN_VERSION="4.9"
+
+PLATFORMS=(
+    android-9
+    android-21
+    android-9
+    android-9
+    android-9
+    android-21
+    android-21
+)
 
 ARCHS=(
     x86
@@ -86,6 +95,7 @@ for (( i=0; i<${#ARCHS[@]}; i++)); do
     arch=${ARCHS[$i]}
     host=${HOSTS[$i]}
     sysroot=${SYSROOTS[$i]}
+	platform=${PLATFORMS[$i]}
 
 	# build dir
 	cd ${BASE_DIR}
@@ -118,8 +128,8 @@ for (( i=0; i<${#ARCHS[@]}; i++)); do
 	# android environment vars for build
 	export ANDROID_ARCH=${sysroot}
     export ANDROID_EABI="${host}-${ANDROID_TOOLCHAIN_VERSION}"
-    export ANDROID_API=${ANDROID_PLATFORM}
-    export ANDROID_SYSROOT="${ANDROID_NDK_ROOT}/platforms/${ANDROID_PLATFORM}/${sysroot}"
+    export ANDROID_API=${platform}
+    export ANDROID_SYSROOT="${ANDROID_NDK_ROOT}/platforms/${platform}/${sysroot}"
     export ANDROID_DEV="${ANDROID_SYSROOT}/usr"
 
     export SYSTEM=android

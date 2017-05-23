@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
                 HttpClient httpClient = new HttpClient();
-                return httpClient.get("https://httpbin.org/get");
+                httpClient.setSSLVerifyHost(false);
+                httpClient.setSSLVerifyPeer(false);
+                return httpClient.doGet("https://httpbin.org/get");
             }
 
             @Override

@@ -185,23 +185,23 @@ CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/curlbuild.h.in
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 pkgincludedir = $(includedir)/curl
-ACLOCAL = ${SHELL} /native-kit/generator/curl-android/tmp/curl-7.53.1/missing aclocal-1.15
+ACLOCAL = ${SHELL} /native-kit/projects/curl-android/tmp/curl-7.53.1/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 AR = /opt/android-ndk-r13b/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-ar
 AS = /opt/android-ndk-r13b/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-as
-AUTOCONF = ${SHELL} /native-kit/generator/curl-android/tmp/curl-7.53.1/missing autoconf
-AUTOHEADER = ${SHELL} /native-kit/generator/curl-android/tmp/curl-7.53.1/missing autoheader
-AUTOMAKE = ${SHELL} /native-kit/generator/curl-android/tmp/curl-7.53.1/missing automake-1.15
+AUTOCONF = ${SHELL} /native-kit/projects/curl-android/tmp/curl-7.53.1/missing autoconf
+AUTOHEADER = ${SHELL} /native-kit/projects/curl-android/tmp/curl-7.53.1/missing autoheader
+AUTOMAKE = ${SHELL} /native-kit/projects/curl-android/tmp/curl-7.53.1/missing automake-1.15
 AWK = mawk
 BLANK_AT_MAKETIME = 
 CC = /opt/android-ndk-r13b/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = --sysroot=/opt/android-ndk-r13b/platforms/android-21/arch-x86 -isystem /opt/android-ndk-r13b/platforms/android-21/arch-x86/usr/include -isystem /native-kit/vendor/openssl-android/include/ -O2 -Wno-system-headers
+CFLAGS = --sysroot=/opt/android-ndk-r13b/platforms/android-9/arch-x86 -isystem /opt/android-ndk-r13b/platforms/android-9/arch-x86/usr/include -isystem /native-kit/vendor/openssl-android/include/ -O2 -Wno-system-headers
 CFLAG_CURL_SYMBOL_HIDING = -fvisibility=hidden
-CONFIGURE_OPTIONS = " '--host=i686-linux-android' '--target=i686-linux-android' '--with-ssl=/native-kit/vendor/openssl-android/x86' '--enable-static' '--disable-shared' '--disable-verbose' '--enable-threaded-resolver' '--enable-libgcc' '--enable-ipv6' '--with-zlib' '--disable-ldaps' '--disable-ldap' '--disable-ftp' '--disable-file' '--disable-telnet' '--disable-dict' '--disable-tftp' '--disable-pop3' '--disable-imap' '--disable-smtp' '--disable-rtsp' '--disable-gopher' 'host_alias=i686-linux-android' 'target_alias=i686-linux-android' 'CC=/opt/android-ndk-r13b/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-gcc' 'CFLAGS=--sysroot=/opt/android-ndk-r13b/platforms/android-21/arch-x86 -I/opt/android-ndk-r13b/platforms/android-21/arch-x86/usr/include -I/native-kit/vendor/openssl-android/include/' 'LDFLAGS=-L/native-kit/vendor/openssl-android/x86' 'CPPFLAGS=--sysroot=/opt/android-ndk-r13b/platforms/android-21/arch-x86 -I/opt/android-ndk-r13b/platforms/android-21/arch-x86/usr/include -DANDROID -DCURL_STATICLIB -I/native-kit/vendor/openssl-android/include/ -I/opt/android-ndk-r13b/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/include' 'CPP=/opt/android-ndk-r13b/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-cpp'"
+CONFIGURE_OPTIONS = " '--host=i686-linux-android' '--target=i686-linux-android' '--with-ssl=/native-kit/vendor/openssl-android/x86' '--enable-static' '--disable-shared' '--disable-verbose' '--enable-threaded-resolver' '--enable-libgcc' '--enable-ipv6' '--with-zlib' '--disable-ldaps' '--disable-ldap' '--disable-ftp' '--disable-file' '--disable-telnet' '--disable-dict' '--disable-tftp' '--disable-pop3' '--disable-imap' '--disable-smtp' '--disable-rtsp' '--disable-gopher' 'host_alias=i686-linux-android' 'target_alias=i686-linux-android' 'CC=/opt/android-ndk-r13b/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-gcc' 'CFLAGS=--sysroot=/opt/android-ndk-r13b/platforms/android-9/arch-x86 -I/opt/android-ndk-r13b/platforms/android-9/arch-x86/usr/include -I/native-kit/vendor/openssl-android/include/' 'LDFLAGS=-L/native-kit/vendor/openssl-android/x86' 'CPPFLAGS=--sysroot=/opt/android-ndk-r13b/platforms/android-9/arch-x86 -I/opt/android-ndk-r13b/platforms/android-9/arch-x86/usr/include -DANDROID -DCURL_STATICLIB -I/native-kit/vendor/openssl-android/include/ -I/opt/android-ndk-r13b/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/include' 'CPP=/opt/android-ndk-r13b/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-cpp'"
 CPP = /opt/android-ndk-r13b/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-cpp
-CPPFLAGS = --sysroot=/opt/android-ndk-r13b/platforms/android-21/arch-x86 -isystem /opt/android-ndk-r13b/platforms/android-21/arch-x86/usr/include -DANDROID -DCURL_STATICLIB -isystem /native-kit/vendor/openssl-android/include/ -isystem /opt/android-ndk-r13b/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/include -I/native-kit/vendor/openssl-android/x86/include -I/native-kit/vendor/openssl-android/x86/include/openssl
+CPPFLAGS = --sysroot=/opt/android-ndk-r13b/platforms/android-9/arch-x86 -isystem /opt/android-ndk-r13b/platforms/android-9/arch-x86/usr/include -DANDROID -DCURL_STATICLIB -isystem /native-kit/vendor/openssl-android/include/ -isystem /opt/android-ndk-r13b/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/include -I/native-kit/vendor/openssl-android/x86/include -I/native-kit/vendor/openssl-android/x86/include/openssl
 CPPFLAG_CURL_STATICLIB = -DCURL_STATICLIB
 CURLVERSION = 7.53.1
 CURL_CA_BUNDLE = 
@@ -264,7 +264,7 @@ LN_S = ln -s
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
 MAINT = #
-MAKEINFO = ${SHELL} /native-kit/generator/curl-android/tmp/curl-7.53.1/missing makeinfo
+MAKEINFO = ${SHELL} /native-kit/projects/curl-android/tmp/curl-7.53.1/missing makeinfo
 MANIFEST_TOOL = :
 MANOPT = 
 MKDIR_P = /bin/mkdir -p
@@ -320,10 +320,10 @@ VERSION = -
 VERSIONNUM = 073501
 ZLIB_LIBS = -lz
 ZSH_FUNCTIONS_DIR = ${prefix}/share/zsh/site-functions
-abs_builddir = /native-kit/generator/curl-android/tmp/curl-7.53.1/include/curl
-abs_srcdir = /native-kit/generator/curl-android/tmp/curl-7.53.1/include/curl
-abs_top_builddir = /native-kit/generator/curl-android/tmp/curl-7.53.1
-abs_top_srcdir = /native-kit/generator/curl-android/tmp/curl-7.53.1
+abs_builddir = /native-kit/projects/curl-android/tmp/curl-7.53.1/include/curl
+abs_srcdir = /native-kit/projects/curl-android/tmp/curl-7.53.1/include/curl
+abs_top_builddir = /native-kit/projects/curl-android/tmp/curl-7.53.1
+abs_top_srcdir = /native-kit/projects/curl-android/tmp/curl-7.53.1
 ac_ct_AR = 
 ac_ct_CC = 
 ac_ct_DUMPBIN = link -dump
@@ -352,7 +352,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /native-kit/generator/curl-android/tmp/curl-7.53.1/install-sh
+install_sh = ${SHELL} /native-kit/projects/curl-android/tmp/curl-7.53.1/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 libext = a

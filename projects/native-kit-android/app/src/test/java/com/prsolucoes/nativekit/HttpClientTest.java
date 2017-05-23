@@ -11,7 +11,7 @@ public class HttpClientTest {
     }
 
     @Test
-    public void get() throws Exception {
+    public void doGet() throws Exception {
         /*
         HttpClient httpClient = new HttpClient();
         String content = httpClient.get("https://httpbin.org/get?coracao");

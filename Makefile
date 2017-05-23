@@ -28,6 +28,8 @@ help:
 	@echo "- build-swig-android"
 	@echo "- build-native-kit-android"
 	@echo "- build-native-kit-android-sdk"
+	@echo "- android-deploy-local-debug"
+	@echo "- android-deploy-local-releae"
 	@echo ""
 	@echo "> LINUX-64"
 	@echo "- build-zlib-linux64"
@@ -62,7 +64,7 @@ docker-run:
 # native
 download-catch:
 	mkdir -p vendor/catch/
-	curl -L https://github.com/philsquared/Catch/releases/download/v1.8.2/catch.hpp -o "vendor/catch/catch.hpp"
+	curl -L https://github.com/philsquared/Catch/releases/download/v1.9.4/catch.hpp -o "vendor/catch/catch.hpp"
 
 test:
 	cd tests && ./build.sh
@@ -102,7 +104,16 @@ build-native-kit-android:
 build-native-kit-android-sdk:
 	cd projects/native-kit-android && ./gradlew build
 	mkdir -p sdk/android
-	cp projects/native-kit-android/app/build/outputs/apk/app-release-unsigned.apk sdk/android/native-kit.apk
+	cp projects/native-kit-android/app/build/outputs/apk/app-debug.apk sdk/android/native-kit-debug.apk
+	cp projects/native-kit-android/app/build/outputs/apk/app-release-unsigned.apk sdk/android/native-kit-release.apk
+
+android-deploy-local-debug:
+	adb install -r sdk/android/native-kit-debug.apk
+	adb shell monkey -p com.prsolucoes.nativekit -c android.intent.category.LAUNCHER 1
+
+android-deploy-local-release:
+	adb install -r sdk/android/native-kit-release.apk
+	adb shell monkey -p com.prsolucoes.nativekit -c android.intent.category.LAUNCHER 1
 
 # linux64
 build-zlib-linux64:

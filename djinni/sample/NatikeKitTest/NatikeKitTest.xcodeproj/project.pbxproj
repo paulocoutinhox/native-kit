@@ -12,7 +12,8 @@
 		3A0E5CA01F4CC67800359C4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0E5C9E1F4CC67800359C4B /* Main.storyboard */; };
 		3A0E5CA21F4CC67800359C4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A0E5CA11F4CC67800359C4B /* Assets.xcassets */; };
 		3A0E5CA51F4CC67800359C4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0E5CA31F4CC67800359C4B /* LaunchScreen.storyboard */; };
-		3AB2A7E71F4DA2EB00E3D462 /* libhelloworld_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB2A7E61F4DA2EB00E3D462 /* libhelloworld_objc.a */; };
+		3AB2A7F51F4DA63E00E3D462 /* libdjinni_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB2A7F31F4DA63E00E3D462 /* libdjinni_objc.a */; };
+		3AB2A7F61F4DA63E00E3D462 /* libhelloworld_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB2A7F41F4DA63E00E3D462 /* libhelloworld_objc.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		3A98EC7E1F4D8BDE0031F8F2 /* libNKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNKit.a; path = "../NKit/build/Debug-iphoneos/libNKit.a"; sourceTree = "<group>"; };
 		3A98EC8A1F4D92910031F8F2 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3AB2A7E61F4DA2EB00E3D462 /* libhelloworld_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libhelloworld_objc.a; path = "../../../../Library/Developer/Xcode/DerivedData/nk-hauapehrrrcigvbtvgdicntgeqqh/Build/Products/Debug-iphonesimulator/libhelloworld_objc.a"; sourceTree = "<group>"; };
+		3AB2A7F31F4DA63E00E3D462 /* libdjinni_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdjinni_objc.a; path = "../../deps/djinni/support-lib/build/Debug-iphoneos/libdjinni_objc.a"; sourceTree = "<group>"; };
+		3AB2A7F41F4DA63E00E3D462 /* libhelloworld_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libhelloworld_objc.a; path = "../../build/Debug-iphoneos/libhelloworld_objc.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AB2A7E71F4DA2EB00E3D462 /* libhelloworld_objc.a in Frameworks */,
+				3AB2A7F51F4DA63E00E3D462 /* libdjinni_objc.a in Frameworks */,
+				3AB2A7F61F4DA63E00E3D462 /* libhelloworld_objc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +83,8 @@
 		3A0E5CB71F4D4C9F00359C4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AB2A7F31F4DA63E00E3D462 /* libdjinni_objc.a */,
+				3AB2A7F41F4DA63E00E3D462 /* libhelloworld_objc.a */,
 				3AB2A7E61F4DA2EB00E3D462 /* libhelloworld_objc.a */,
 				3A98EC8A1F4D92910031F8F2 /* libc++.tbd */,
 				3A98EC7E1F4D8BDE0031F8F2 /* libNKit.a */,

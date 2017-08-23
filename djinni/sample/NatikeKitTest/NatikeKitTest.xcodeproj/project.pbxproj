@@ -72,13 +72,13 @@
 			isa = PBXGroup;
 			children = (
 				3A0E5C9A1F4CC67800359C4B /* AppDelegate.swift */,
-				3A0E5C9C1F4CC67800359C4B /* ViewController.swift */,
-				3A0E5C9E1F4CC67800359C4B /* Main.storyboard */,
 				3A0E5CA11F4CC67800359C4B /* Assets.xcassets */,
-				3A0E5CA31F4CC67800359C4B /* LaunchScreen.storyboard */,
-				3A0E5CA61F4CC67800359C4B /* Info.plist */,
 				3AB2A7FA1F4DA78200E3D462 /* dummy.mm */,
+				3A0E5CA61F4CC67800359C4B /* Info.plist */,
+				3A0E5CA31F4CC67800359C4B /* LaunchScreen.storyboard */,
+				3A0E5C9E1F4CC67800359C4B /* Main.storyboard */,
 				3AB2A7F91F4DA78100E3D462 /* NatikeKitTest-Bridging-Header.h */,
+				3A0E5C9C1F4CC67800359C4B /* ViewController.swift */,
 			);
 			path = NatikeKitTest;
 			sourceTree = "<group>";
@@ -308,6 +308,7 @@
 					../../../source,
 					../../../source/http,
 					"../../build/cpp-output",
+					"../../build/objc-output",
 				);
 				INFOPLIST_FILE = NatikeKitTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -342,6 +343,7 @@
 					../../../source,
 					../../../source/http,
 					"../../build/cpp-output",
+					"../../build/objc-output",
 				);
 				INFOPLIST_FILE = NatikeKitTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

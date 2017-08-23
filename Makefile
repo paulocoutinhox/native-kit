@@ -110,6 +110,12 @@ djinni-generate:
 	-Ideps/djinni/common.gypi \
 	./nk.gyp
 
+	cd djinni && xcodebuild \
+		-project build_ios/nk.xcodeproj \
+		-scheme libhelloworld_objc \
+		-configuration 'Debug' \
+		-sdk iphoneos
+
 # macos
 build-zlib-macos:
 	cd projects/zlib-macos && ./build.sh

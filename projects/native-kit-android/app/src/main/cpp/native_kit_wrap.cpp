@@ -445,7 +445,30 @@ SWIGEXPORT void JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1s
   arg1 = *(NK::HttpClient **)&jarg1; 
   arg2 = jarg2 ? true : false; 
   (arg1)->setSSLVerifyPeer(arg2);
+
+	//jclass interfaceClass = jenv->FindClass("android/widget/Toast");
+	//jmethodID method = jenv->GetMethodID(interfaceClass, "showMessage","()V");
+
+//  jclass interfaceClass = jenv->FindClass("com/prsolucoes/nativekit/ui/MainActivity");
+//  jmethodID method = jenv->GetMethodID(interfaceClass, "showMessage","()V");
+//  jobject obj = jenv->NewGlobalRef(jenv->NewObject(interfaceClass, method));
+//	jenv->CallVoidMethod(obj, method);
 }
+
+JNIEXPORT void JNICALL
+Java_com_prsolucoes_nativekit_ui_MainActivity_process(JNIEnv *env, jobject instance)
+{
+	jclass cls = env->FindClass("com/prsolucoes/nativekit/ui/MainActivity");
+	jmethodID method = env->GetMethodID(cls, "showMessage","()V");
+	env->CallVoidMethod(instance, method);
+}
+
+JNIEXPORT void JNICALL
+Java_com_prsolucoes_nativekit_ui_MainActivity_warmUp(JNIEnv *env, jobject instance)
+{
+
+}
+
 
 
 SWIGEXPORT void JNICALL Java_com_prsolucoes_nativekit_NativeKitJNI_HttpClient_1setSSLVerifyHost(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {

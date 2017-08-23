@@ -25,7 +25,17 @@ public class MainActivity extends AppCompatActivity {
         System.loadLibrary("native-kit-android");
     }
 
-    public void doGetRequest(View view) {
+    public void showMessage() {
+        Toast.makeText(this, "A new message", Toast.LENGTH_SHORT).show();
+    }
+
+    public native void warmUp();
+
+    public native void process();
+
+    public void doGetRequestNative(View view) {
+        process();
+        /*
         new AsyncTask<String, String, String>() {
 
             @Override
@@ -43,6 +53,31 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }.execute();
+        */
+    }
+
+    public void doGetRequestAndroid(View view) {
+        //process();
+        showMessage();
+        /*
+        new AsyncTask<String, String, String>() {
+
+            @Override
+            protected String doInBackground(String... params) {
+                HttpClient httpClient = new HttpClient();
+                httpClient.setSSLVerifyHost(false);
+                httpClient.setSSLVerifyPeer(false);
+                return httpClient.doGet("https://httpbin.org/get");
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+                tvContent.setText(result);
+            }
+
+        }.execute();
+        */
     }
 
 }

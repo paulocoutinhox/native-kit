@@ -1,0 +1,14 @@
+# NK::HttpClient
+http_client = interface +c {
+	# methods
+	static create(): http_client;
+    do_get(url: string): string;
+    do_post(url: string, data: string): string;
+    do_put(url: string, data: string): string;
+	do_delete(url: string): string;
+	do_head(url: string): string;
+	do_path(url: string): string;
+    
+    # version
+    const version: i32 = 1;
+}

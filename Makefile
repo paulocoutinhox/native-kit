@@ -15,6 +15,7 @@ help:
 	@echo "- download-catch"
 	@echo "- test"
 	@echo "- clean-tests"
+	@echo "- djinni-generate"
 	@echo ""
 	@echo "> MACOS"
 	@echo "- build-zlib-macos"
@@ -38,21 +39,31 @@ help:
 	@echo "- build-curl-linux64"
 	@echo "- build-native-kit-linux64-sdk"
 	@echo ""
+	@echo "> iOS"
+	@echo "- build-zlib-ios"
+	@echo "- build-openssl-ios"
+	@echo "- build-curl-ios"
+	@echo "- build-native-kit-ios-sdk"
+	@echo ""
 
 clean:
 	rm -rf projects/curl-android/tmp
 	rm -rf projects/curl-macos/tmp
 	rm -rf projects/curl-linux64/tmp
+	rm -rf projects/curl-ios/tmp
 	rm -rf projects/native-kit-android/build
 	rm -rf projects/native-kit-android/app/build
 	rm -rf projects/native-kit-macos/tmp
 	rm -rf projects/native-kit-linux64/tmp
+	rm -rf projects/native-kit-ios/tmp
 	rm -rf projects/openssl-android/tmp
 	rm -rf projects/openssl-macos/tmp
 	rm -rf projects/openssl-linux64/tmp
+	rm -rf projects/openssl-ios/tmp
 	rm -rf projects/zlib-android/tmp
 	rm -rf projects/zlib-macos/tmp
 	rm -rf projects/zlib-linux64/tmp
+	rm -rf projects/zlib-ios/tmp
 	rm -rf tests/tmp
 
 docker-build:
@@ -68,13 +79,36 @@ docker-run-bash:
 # native
 download-catch:
 	mkdir -p vendor/catch/
-	curl -L https://github.com/philsquared/Catch/releases/download/v1.9.4/catch.hpp -o "vendor/catch/catch.hpp"
+	curl -L https://github.com/philsquared/Catch/releases/download/v1.9.7/catch.hpp -o "vendor/catch/catch.hpp"
 
 test:
 	cd tests && ./build.sh
 
 clean-tests:
 	rm -rf tests/tmp
+
+djinni-generate:
+	rm -rf djinni/build
+	cd djinni && ${DJINNI_HOME}/src/run \
+	--java-out build/java-output \
+	--java-package com.prsolucoes.nativekit \
+	--java-cpp-exception Exception \
+	--cpp-out build/cpp-output \
+	--cpp-namespace NK \
+	--ident-jni-class NK \
+	--jni-out build/jni-output \
+	--objc-out build/objc-output \
+	--objc-type-prefix NK \
+	--objcpp-out build/objc-output \
+	--idl native-kit.djinni
+
+	cd djinni && gyp \
+	--depth=. \
+	-f xcode \
+	-DOS=ios \
+	--generator-output ./build_ios \
+	-Ideps/djinni/common.gypi \
+	./nk.gyp
 
 # macos
 build-zlib-macos:
@@ -131,3 +165,16 @@ build-curl-linux64:
 
 build-native-kit-linux64-sdk:
 	cd projects/native-kit-linux64 && ./build.sh
+
+# ios
+build-zlib-ios:
+	cd projects/zlib-ios && ./build.sh
+
+build-openssl-ios:
+	cd projects/openssl-ios && ./build.sh
+
+build-curl-ios:
+	cd projects/curl-ios && ./build.sh
+
+build-native-kit-ios-sdk:
+	cd projects/native-kit-ios && ./build.sh	

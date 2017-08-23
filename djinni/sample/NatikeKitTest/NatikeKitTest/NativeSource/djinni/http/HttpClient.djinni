@@ -1,0 +1,18 @@
+# NK::HttpClient
+HttpClient = interface +c {
+	# methods
+    doGet(url: string): string;
+    doPost(url: string, data: string): string;
+    doPut(url: string, data: string): string;
+	doDelete(url: string): string;
+	doHead(url: string): string;
+	doPath(url: string): string;
+    
+    # version
+    const version: i32 = 1;
+}
+
+# This interface will be implemented in Java and ObjC and can be called from C++.
+# my_client_interface = interface +j +o {
+#     log_string(str: string): bool;
+# }

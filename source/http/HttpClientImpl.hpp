@@ -18,6 +18,13 @@ namespace NK {
         
         static std::shared_ptr<HttpClient> create();
         
+        std::string do_get(const std::string &url);
+        std::string do_put(const std::string &url, const std::string &data);
+        std::string do_head(const std::string &url);
+        std::string do_path(const std::string &url);
+        std::string do_post(const std::string &url, const std::string &data);
+        std::string do_delete(const std::string &url);
+        
     };
     
 }

@@ -102,16 +102,8 @@ djinni-generate:
 	--objcpp-out build/objc-output \
 	--idl native-kit.djinni
 
-	cd djinni && gyp \
-	--depth=. \
-	-f xcode \
-	-DOS=ios \
-	--generator-output ./build_ios \
-	-Ideps/djinni/common.gypi \
-	./nk.gyp
-
 	cd djinni && xcodebuild \
-		-project build_ios/nk.xcodeproj \
+		-project sample/NatikeKitTest/nk.xcodeproj \
 		-scheme libhelloworld_objc \
 		-configuration 'Debug' \
 		-sdk iphoneos

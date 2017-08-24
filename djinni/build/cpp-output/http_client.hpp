@@ -19,7 +19,7 @@ public:
 
     /** methods */
     static std::shared_ptr<HttpClient> create();
-
+    
     virtual std::string do_get(const std::string & url) = 0;
 
     virtual std::string do_post(const std::string & url, const std::string & data) = 0;
@@ -31,6 +31,7 @@ public:
     virtual std::string do_head(const std::string & url) = 0;
 
     virtual std::string do_path(const std::string & url) = 0;
+ 
 };
 
 }  // namespace NK

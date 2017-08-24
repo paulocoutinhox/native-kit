@@ -13,8 +13,10 @@
 		3A0E5CA21F4CC67800359C4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A0E5CA11F4CC67800359C4B /* Assets.xcassets */; };
 		3A0E5CA51F4CC67800359C4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0E5CA31F4CC67800359C4B /* LaunchScreen.storyboard */; };
 		3AB2A7FB1F4DA78200E3D462 /* dummy.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2A7FA1F4DA78200E3D462 /* dummy.mm */; };
-		3AB2A82F1F4DB01C00E3D462 /* libdjinni_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB2A7FF1F4DACA600E3D462 /* libdjinni_objc.a */; };
-		3AB2A8331F4DB09D00E3D462 /* libhelloworld_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB2A8321F4DB09D00E3D462 /* libhelloworld_objc.a */; };
+		3AB2A8401F4E89F100E3D462 /* NKHttpClient.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2A83E1F4E89F100E3D462 /* NKHttpClient.mm */; };
+		3AB2A8411F4E89F100E3D462 /* NKHttpClient+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2A83F1F4E89F100E3D462 /* NKHttpClient+Private.mm */; };
+		3AB2A8431F4E8A2200E3D462 /* http_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2A8421F4E8A2200E3D462 /* http_client.cpp */; };
+		3AB2A8451F4E8A3700E3D462 /* HttpClientImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2A8441F4E8A3700E3D462 /* HttpClientImpl.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,14 @@
 		3AB2A81F1F4DAFFE00E3D462 /* libdjinni_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdjinni_objc.a; path = "../../deps/djinni/support-lib/build/Debug-iphoneos/libdjinni_objc.a"; sourceTree = "<group>"; };
 		3AB2A8201F4DAFFE00E3D462 /* libhelloworld_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libhelloworld_objc.a; path = "../../build/Debug-iphoneos/libhelloworld_objc.a"; sourceTree = "<group>"; };
 		3AB2A8321F4DB09D00E3D462 /* libhelloworld_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libhelloworld_objc.a; path = "../../build/Debug-iphoneos/libhelloworld_objc.a"; sourceTree = "<group>"; };
+		3AB2A8391F4DFEBA00E3D462 /* libhelloworld_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libhelloworld_objc.a; path = "../../build/Debug-iphoneos/libhelloworld_objc.a"; sourceTree = "<group>"; };
+		3AB2A83C1F4DFEDB00E3D462 /* libhelloworld_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libhelloworld_objc.a; path = "../../build/Debug-iphoneos/libhelloworld_objc.a"; sourceTree = "<group>"; };
+		3AB2A83E1F4E89F100E3D462 /* NKHttpClient.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = NKHttpClient.mm; path = "../../build/objc-output/NKHttpClient.mm"; sourceTree = "<group>"; };
+		3AB2A83F1F4E89F100E3D462 /* NKHttpClient+Private.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "NKHttpClient+Private.mm"; path = "../../build/objc-output/NKHttpClient+Private.mm"; sourceTree = "<group>"; };
+		3AB2A8421F4E8A2200E3D462 /* http_client.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = http_client.cpp; path = "../../build/cpp-output/http_client.cpp"; sourceTree = "<group>"; };
+		3AB2A8441F4E8A3700E3D462 /* HttpClientImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HttpClientImpl.cpp; path = ../../../source/http/HttpClientImpl.cpp; sourceTree = "<group>"; };
+		3AB2A8461F4E8ACF00E3D462 /* DJIError.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = DJIError.mm; path = "../../../../djinni/support-lib/objc/DJIError.mm"; sourceTree = "<group>"; };
+		3AB2A8471F4E8ACF00E3D462 /* DJIProxyCaches.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = DJIProxyCaches.mm; path = "../../../../djinni/support-lib/objc/DJIProxyCaches.mm"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +63,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AB2A8331F4DB09D00E3D462 /* libhelloworld_objc.a in Frameworks */,
-				3AB2A82F1F4DB01C00E3D462 /* libdjinni_objc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +72,12 @@
 		3A0E5C8E1F4CC67800359C4B = {
 			isa = PBXGroup;
 			children = (
+				3AB2A8461F4E8ACF00E3D462 /* DJIError.mm */,
+				3AB2A8471F4E8ACF00E3D462 /* DJIProxyCaches.mm */,
+				3AB2A8441F4E8A3700E3D462 /* HttpClientImpl.cpp */,
+				3AB2A8421F4E8A2200E3D462 /* http_client.cpp */,
+				3AB2A83E1F4E89F100E3D462 /* NKHttpClient.mm */,
+				3AB2A83F1F4E89F100E3D462 /* NKHttpClient+Private.mm */,
 				3A0E5C991F4CC67800359C4B /* NatikeKitTest */,
 				3A0E5C981F4CC67800359C4B /* Products */,
 				3A0E5CB71F4D4C9F00359C4B /* Frameworks */,
@@ -96,6 +110,8 @@
 		3A0E5CB71F4D4C9F00359C4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AB2A83C1F4DFEDB00E3D462 /* libhelloworld_objc.a */,
+				3AB2A8391F4DFEBA00E3D462 /* libhelloworld_objc.a */,
 				3AB2A8321F4DB09D00E3D462 /* libhelloworld_objc.a */,
 				3AB2A81F1F4DAFFE00E3D462 /* libdjinni_objc.a */,
 				3AB2A8201F4DAFFE00E3D462 /* libhelloworld_objc.a */,
@@ -193,6 +209,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AB2A8451F4E8A3700E3D462 /* HttpClientImpl.cpp in Sources */,
+				3AB2A8431F4E8A2200E3D462 /* http_client.cpp in Sources */,
+				3AB2A8401F4E89F100E3D462 /* NKHttpClient.mm in Sources */,
+				3AB2A8411F4E89F100E3D462 /* NKHttpClient+Private.mm in Sources */,
 				3AB2A7FB1F4DA78200E3D462 /* dummy.mm in Sources */,
 				3A0E5C9D1F4CC67800359C4B /* ViewController.swift in Sources */,
 				3A0E5C9B1F4CC67800359C4B /* AppDelegate.swift in Sources */,
@@ -329,6 +349,7 @@
 					../../../source/http,
 					"../../build/cpp-output",
 					"../../build/objc-output",
+					"/Users/paulo/Developer/workspaces/cpp/djinni/support-lib/objc",
 				);
 				INFOPLIST_FILE = NatikeKitTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -364,6 +385,7 @@
 					../../../source/http,
 					"../../build/cpp-output",
 					"../../build/objc-output",
+					"/Users/paulo/Developer/workspaces/cpp/djinni/support-lib/objc",
 				);
 				INFOPLIST_FILE = NatikeKitTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

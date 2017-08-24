@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "907A88EE2C9C224A37AAFA5D4B66E6C6EA784C68",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4E8EC1E97A744AECB2BFFE9D3D48C062D250382B" : 9223372036854775807,
+    "907A88EE2C9C224A37AAFA5D4B66E6C6EA784C68" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DDCE0BD6-0756-4B08-84C7-B7B6371D6293",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4E8EC1E97A744AECB2BFFE9D3D48C062D250382B" : "djinni\/",
+    "907A88EE2C9C224A37AAFA5D4B66E6C6EA784C68" : "native-kit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "NatikeKitTest",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "djinni\/sample\/NatikeKitTest\/NatikeKitTest.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:dropbox\/djinni.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4E8EC1E97A744AECB2BFFE9D3D48C062D250382B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:prsolucoes\/native-kit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "907A88EE2C9C224A37AAFA5D4B66E6C6EA784C68"
+    }
+  ]
+}

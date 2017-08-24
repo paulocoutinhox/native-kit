@@ -16,7 +16,7 @@ namespace NK {
     
     class HttpClientImpl : HttpClient {
         
-        static std::shared_ptr<HttpClient> create();
+        static std::shared_ptr<HttpClientImpl> create();
         
         std::string do_get(const std::string &url);
         std::string do_put(const std::string &url, const std::string &data);

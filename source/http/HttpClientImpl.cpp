@@ -10,8 +10,8 @@
 
 namespace NK {
     
-    std::shared_ptr<HttpClient> HttpClientImpl::create() {
-        return std::make_shared<HttpClient>();
+    std::shared_ptr<HttpClientImpl> HttpClientImpl::create() {
+        return std::make_shared<HttpClientImpl>();
     }
     
     std::string HttpClientImpl::do_get(const std::string &url) {

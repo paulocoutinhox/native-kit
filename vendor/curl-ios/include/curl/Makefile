@@ -86,7 +86,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-apple-darwin16.7.0
-host_triplet = armv7s-apple-darwin
+host_triplet = armv7-apple-darwin
 subdir = include/curl
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/curl-compilers.m4 \
@@ -197,9 +197,9 @@ AWK = awk
 BLANK_AT_MAKETIME = 
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -DCURL_BUILD_IOS -arch armv7s -pipe -Os -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -miphoneos-version-min=6.0 -fembed-bitcode -Qunused-arguments -Werror=partial-availability
+CFLAGS = -DCURL_BUILD_IOS -arch armv7 -pipe -Os -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -miphoneos-version-min=6.0 -fembed-bitcode -Qunused-arguments -Werror=partial-availability
 CFLAG_CURL_SYMBOL_HIDING = -fvisibility=hidden
-CONFIGURE_OPTIONS = " '--disable-shared' '--with-zlib=/Users/paulo/Developer/workspaces/cpp/native-kit/vendor/zlib-ios' '--with-ssl=/Users/paulo/Developer/workspaces/cpp/native-kit/vendor/openssl-ios' '--enable-static' '--enable-ipv6' '--host=armv7s-apple-darwin' '--prefix=/Users/paulo/Developer/workspaces/cpp/native-kit/projects/curl-ios/tmp/curl-7.53.1/armv7s' 'host_alias=armv7s-apple-darwin' 'CFLAGS=-DCURL_BUILD_IOS -arch armv7s -pipe -Os -gdwarf-2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -miphoneos-version-min=6.0 -fembed-bitcode' 'LDFLAGS=-arch armv7s -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk'"
+CONFIGURE_OPTIONS = " '--disable-shared' '--with-zlib=/Users/paulo/Developer/workspaces/cpp/native-kit/vendor/zlib-ios' '--with-ssl=/Users/paulo/Developer/workspaces/cpp/native-kit/vendor/openssl-ios' '--enable-static' '--enable-ipv6' '--host=armv7-apple-darwin' '--prefix=/Users/paulo/Developer/workspaces/cpp/native-kit/projects/curl-ios/tmp/curl-7.53.1/armv7' 'host_alias=armv7-apple-darwin' 'CFLAGS=-DCURL_BUILD_IOS -arch armv7 -pipe -Os -gdwarf-2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -miphoneos-version-min=6.0 -fembed-bitcode' 'LDFLAGS=-arch armv7 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk'"
 CPP = gcc -E
 CPPFLAGS = 
 CPPFLAG_CURL_STATICLIB = -DCURL_STATICLIB
@@ -251,7 +251,7 @@ INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 IPV6_ENABLED = 1
 LD = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
-LDFLAGS = -arch armv7s -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk
+LDFLAGS = -arch armv7 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk
 LIBCURL_LIBS = -lz
 LIBMETALINK_CPPFLAGS = 
 LIBMETALINK_LDFLAGS = 
@@ -344,9 +344,9 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = armv7s-apple-darwin
-host_alias = armv7s-apple-darwin
-host_cpu = armv7s
+host = armv7-apple-darwin
+host_alias = armv7-apple-darwin
+host_cpu = armv7
 host_os = darwin
 host_vendor = apple
 htmldir = ${docdir}
@@ -362,7 +362,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /Users/paulo/Developer/workspaces/cpp/native-kit/projects/curl-ios/tmp/curl-7.53.1/armv7s
+prefix = /Users/paulo/Developer/workspaces/cpp/native-kit/projects/curl-ios/tmp/curl-7.53.1/armv7
 program_transform_name = s,x,x,
 psdir = ${docdir}
 runstatedir = ${localstatedir}/run

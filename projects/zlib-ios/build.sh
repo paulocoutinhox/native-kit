@@ -52,15 +52,18 @@ cd ${LIBRARY_DIR}
 mkdir -p ./x86_64
 mkdir -p ./arm64
 mkdir -p ./armv7s
+mkdir -p ./armv7
 
 build_for_arch x86_64 x86_64-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk ${PWD}/x86_64 || exit 2
 build_for_arch arm64 arm-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk ${PWD}/arm64 || exit 3
 build_for_arch armv7s armv7s-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk ${PWD}/armv7s || exit 4
+build_for_arch armv7 armv7-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk ${PWD}/armv7 || exit 5
 
 ${DEVROOT}/usr/bin/lipo \
 	-arch x86_64 ./x86_64/lib/libz.a \
 	-arch armv7s ./armv7s/lib/libz.a \
 	-arch arm64 ./arm64/lib/libz.a \
+	-arch armv7 ./armv7/lib/libz.a \
 	-output ./libz.a -create
 
 # install process

@@ -30,7 +30,7 @@ class ViewController: UIViewController {
             alert.dismiss(animated: true, completion: nil)
         }))
         
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

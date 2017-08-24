@@ -7,6 +7,7 @@
 //
 
 #include "HttpClientImpl.hpp"
+#include <iostream>
 
 namespace NK {
     
